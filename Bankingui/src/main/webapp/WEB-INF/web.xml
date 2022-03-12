@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+
+ 
+  <display-name>Bankingui</display-name>
+  <welcome-file-list>  
+   <welcome-file>Login.jsp</welcome-file>  
+  </welcome-file-list>  
+  <servlet>
+    <servlet-name>LoginPage</servlet-name>
+    <servlet-class>LoginPage</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AccountServlet</servlet-name>
+    <servlet-class>AccountServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>CustomerServlet</servlet-name>
+    <servlet-class>CustomerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateServlet</servlet-name>
+    <servlet-class>UpdateServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>DeactivateServlet</servlet-name>
+    <servlet-class>DeactivateServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <servlet-class>ActivateAccountServlet</servlet-class>
+  </servlet>
+  
+  
+  
+  <servlet-mapping>
+    <servlet-name>LoginPage</servlet-name>
+    <url-pattern>/LoginPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateServlet</servlet-name>
+    <url-pattern>/UpdateServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AccountServlet</servlet-name>
+    <url-pattern>/AccountServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/CustomerServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>DeactivateServlet</servlet-name>
+    <url-pattern>/DeactivateServlet</url-pattern>
+  </servlet-mapping>
+
+   <servlet-mapping>
+    <servlet-name>ActivateAccountServlet</servlet-name>
+    <url-pattern>/ActivateAccountServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+</web-app>

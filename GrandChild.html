@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Grand child</title>
+</head>
+<body>
+<script>
+
+function grandBox(num){
+	 let number=document.getElementById("generate").value;
+	
+     for(var i=0;i<number;i++)
+    	 {
+    	  breakCall();
+    	  breakCall();
+    	 
+    	  const label=document.createElement("label");
+    	  label.setAttribute("value","Parent");
+    	  label.textContent="parent : ";
+    	  document.body.appendChild(label);
+    	  
+    	  const father=document.createElement("input");
+    	  father.setAttribute("input","parent");
+    	  father.setAttribute("name","father");
+    	  father.setAttribute("type","text");
+    	  let variable=document.body.appendChild(father);
+    	 
+    	
+    	 
+    	  const label1=document.createElement("label");
+    	  label1.setAttribute("value","child");
+    	  label1.textContent="child : ";
+    	  document.body.appendChild(label1);
+    	  
+    	  const son=document.createElement("input");
+    	  son.setAttribute("output","child");
+    	  son.setAttribute("name","son");
+    	  son.setAttribute("type","text");
+    	  let variable1=document.body.appendChild(son);
+    	  
+    	
+    	  breakCall();
+    	  
+    	   	  
+
+    	 }
+     breakCall();
+     const search=document.createElement("label");
+     search.setAttribute("id","userInput");
+     search.textContent="Search to get grandchild : ";
+     document.body.appendChild(search);
+     
+     const searchInput=document.createElement("input");
+     searchInput.setAttribute("id","textInput");
+     searchInput.setAttribute("name","input");
+     searchInput.setAttribute("type","text");
+     document.body.appendChild(searchInput);
+    
+	 	
+     breakCall();
+  	 const button= document.createElement("input");
+	 button.setAttribute("id","submit");
+	 button.setAttribute("type","submit");
+	 button.setAttribute("onclick","checkElements()");
+	 document.body.appendChild(button);
+	
+}
+
+function breakCall()
+    {
+	 const exit=document.createElement("br");
+     document.body.appendChild(exit);  
+    }
+	
+</script>
+
+<h1>know who got Grandchildrens</h1>
+<label>Enter how many number of data you provide:  </label>
+<input type="number" name="personname" id="generate"  required>
+<button type="submit" onclick="grandBox()">Enter</button>
+<p id="GrandChild" style="font-family:sans-serif;font-size:20px;color:green;font-weight:bold;"></p>
+
+
+<script>
+function nameCall()
+{
+	const elementParent=document.getElementsByName("father");
+
+	const elementChild=document.getElementsByName("son");
+	
+
+	 
+	var elementMap=new Map();
+	var objectList=new Array();
+	
+	for(let i=0;i < elementParent.length;i++)
+		{
+		 if(elementMap.get(elementParent[i].value) == null)
+		  {
+			 objectList=new Array();
+			 elementMap.set(elementParent[i].value,objectList);
+		  }
+		 elementMap.get(elementParent[i].value).push(elementChild[i].value); 
+		
+		}
+	
+	return elementMap;
+	
+
+}
+
+
+function checkElements()
+{
+	const valueList=nameCall();
+	let searchKey=document.getElementById("textInput").value;
+	var arrayElements=valueList.get(searchKey);
+	
+	let count=0;
+
+	let array = new Array();
+	 for(var j=0;j<arrayElements.length;j++)
+	 {
+		 array.push(valueList.get(arrayElements[j]));
+		
+		if(valueList.get(arrayElements[j]) != null)
+			{
+				count += valueList.get(arrayElements[j]).length;
+			}
+	 }
+	 
+	 
+	if(count == 1)
+		{
+		 	document.getElementById("GrandChild").innerHTML+=searchKey+" has "+ count +" grandchildren,the name is"+ "<ul><li>"+array+"</ul></li>";
+		
+		}
+	else if(count > 1)
+		{
+			document.getElementById("GrandChild").innerHTML+=searchKey+" has "+ count +" grandChildrens,They are "+"<ul><li>"+array+"</ul></li>";;
+		}
+	else
+		{
+		 	document.getElementById("GrandChild").innerHTML+=searchKey+" has no grandchildren. " ;
+		}
+	 }
+
+</script>
+
+
+
+
+
+<script>
+
+
+
+
+</script>
+</body>
+</html>

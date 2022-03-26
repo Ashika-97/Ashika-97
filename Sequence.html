@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trap sequence</title>
+</head>
+<script>
+
+function trapSequence(n1,n2,b)
+{  
+	
+    let a=n1;
+    var map=new Map();
+    let count=0;
+	for(a;a <= n2;a++)
+	 {
+		var c=sumOfDigits(a);
+	    c=sumOfDigits(c);
+	    if(a%b == 0 || b%a == 0|| c%b ==0|| b%c==0)
+		 {
+	    	map.set(a,b);
+		    b=b+2;	
+		    count++;
+		 }
+	     else
+	     {
+	    	 if(b<=3){}
+	    	
+	    	 else{
+		     b=b-1;
+	         }
+	     }
+	    }
+	return map;
+	
+}
+   	
+function sumOfDigits(a)
+{
+	 var sum=0;
+	 while (a>=1)
+     {
+         sum = sum + a % 10;
+         a = Math.floor(a/10);  
+	    }
+	 return sum;
+	}
+		
+		
+</script>
+<body>
+
+
+
+<h1>To Know the Trap Sequence</h1>
+<button  onclick="sequenceList()">Find Trap</button>
+<p id="trap"></p>
+<script>
+function sequenceList()
+{
+const alignVariables=trapSequence(3,13,5);
+
+for(var mapSequence of alignVariables)
+	{
+	 document.getElementById("trap").innerHTML+="<ul><li>" + mapSequence +"</li></ul>";
+	}
+     document.getElementById("trap").innerHTML+="The Number Of Traps are "+(alignVariables.size);
+
+}
+
+</script>
+
+
+</body>
+</html>
+
+

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Account Add page</title>
+<title>Add Account</title>
 </head>
 <style>
 
@@ -52,6 +52,17 @@ text-indent:40px;
 text-align:left;
 top:50%;
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
 
 </style>
 <body>
@@ -60,7 +71,7 @@ top:50%;
 <form action="AccountServlet?operation=addAccount" method="post">
 
 <h1>welcome to Accounts Adding session </h1>
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -68,10 +79,11 @@ if(session.getAttribute("user")==null)
 	request.getRequestDispatcher("Login.jsp").forward(request,response);
 	}
 %>
-
+</div>
 
 
 <br><br>
+<div class="message">
 <% 
 String name=(String) request.getAttribute("message");
 if(name!=null)
@@ -80,6 +92,7 @@ if(name!=null)
 		}
 
 %>
+</div>
 <br>
 
 <p style="text-align:center;font-size:23px;top:50%"></p>
@@ -87,9 +100,9 @@ if(name!=null)
 
 <br>
 <div class="text" style="font-size:20px">
-<p> Add Account</p>
+<p> Add Account:</p>
 
-CustomerId:<input type="number" name="customerId" placeholder="customerId"><br>
+CustomerId:<input type="number" name="customerId" placeholder="customerId" required><br>
 <br>
 Branch:<br>
 <select style="width:70%;" name="branch">
@@ -110,19 +123,19 @@ System.out.println(branchName);%>
 <br>
 <br>
 
-balance:<input type ="text" name="balance" placeholder="balance">
+balance:<input type ="text" name="balance" placeholder="balance" required>
 <br>
 <br>
 <input type="submit" name="add Account" value="Add Account">
 </div>
 <br>
 </form>
-
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in add account");
+	out.println("Error in add account");
 }%>
-
+</div>
 
 
 

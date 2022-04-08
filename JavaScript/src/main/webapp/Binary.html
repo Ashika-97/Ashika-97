@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Binary Number Bits</title>
+</head>
+<script>
+function binaryForm(num)
+{       
+    let binary = (num % 2).toString();
+    while( num > 1) {
+        num = parseInt(num / 2);
+        binary =  (num % 2) + (binary);
+    }
+  
+    return binary;
+ 
+}
+
+</script>
+
+<body>
+<h1>To convert binary number bits</h1>
+<button type="button" onclick="bitsCount()" >Convert</button>
+<p id="bits"></p>
+<script>
+function bitsCount()
+{
+	const variable=binaryForm(31);
+	let count=0;
+	for(var n=0;n<variable.length;n++)
+ 	{
+ 	 if(variable[n]==1)
+ 		 count++;
+ 	}
+	
+	document.getElementById("bits").innerHTML+="<ul><li>" +"the binary digits are "+variable;
+	document.getElementById("bits").innerHTML+="<ul><li>"+"the number of bit count of 1's is "+ count;
+	
+	
+	}
+
+
+</script>
+
+</body>
+</html>

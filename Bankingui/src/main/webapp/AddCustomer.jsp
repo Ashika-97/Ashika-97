@@ -28,22 +28,26 @@ color:#090302;
 text-indent:40px;
 
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
 
 
 </style>
 <body>
 <%@ include file="Menu.jsp"%>
 
-<p>Add Customer</p>
-<%String name1=(String) request.getAttribute("message");
-  if(name1!=null)
-  {
-	  out.println("Customer Added Successfully");
-  }
+<p>Add Customer:</p>
 
-
-%>
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -52,12 +56,13 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
+</div>
 
 <div class="text" style="font-size:25px">
 <form action="AccountServlet?operation=addCustomer" method="post">
 
 <p>Add Customer</p>
-Name:<input type="text" name="Enter Name" placeholder="Enter the name" maxlength="15"  required ><br>
+Name:<input type="text" name="Enter Name" placeholder="Enter the name" maxlength="15"  required><br>
 <br>
 Address:<input type="text" name="Enter Address" placeholder="Enter the address" required><br>
 <br>
@@ -68,12 +73,24 @@ Email:<input type="text" name="Enter email" placeholder="Enter the Email" requir
 <input type="submit"  value="submit">
 </form>
 
-<br><br>
-</div>
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in add customer");
+	out.println("Error in add customer");
 }%>
+</div>
+<div class="message">
+<%String name1=(String) request.getAttribute("message");
+  if(name1!=null)
+  {
+	  out.println("Customer Added Successfully");
+  }
+
+
+%>
+</div>
+<br><br>
+</div>
 
 </body>
 </html>

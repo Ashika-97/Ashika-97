@@ -58,6 +58,18 @@ text-align:left;
 font-size:15px;
 top:10%;
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
 </style>
 
 <body>
@@ -90,12 +102,12 @@ Map<Integer,AccountInformation> account1=null;
 Map<Integer,AccountInformation> account=null;
 
 %>
-<h1>User Bank Details</h1><br>
+<h1>User Bank Details:</h1><br>
 
 <form action="action" method="post">
 <div class="run" style="text-align:left;font-size:20px;">
 welcome
-<%=session.getAttribute("user") %>
+<%=session.getAttribute("user") %>,
 </div>
 
 <br>

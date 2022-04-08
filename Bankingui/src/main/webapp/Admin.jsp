@@ -82,18 +82,26 @@ border-bottom:2px solid #6586A4;
 }
 .content-table tbody tr.active-row{
 font-weight:bold;
-color:#6586A4;
+color:#6586A4;}
+
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
 
 }
-
-
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
 
 </style>
 
 <body background="admin.jpg">
 
 <%@ include file="Menu.jsp" %> 
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -102,10 +110,11 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
 
 <form action="action" method="post">
-
+<br>
+<div class="message">
  <%String name=(String) request.getAttribute("message");
  if(name!=null)
  {
@@ -113,21 +122,22 @@ if(session.getAttribute("user")==null)
  }
 
 %>
+</div>
  
 
 
 
 
-<div class="test" style="font-size:30px;font-weight:bold;position:absolute;top:15%;left:43%; z-index:999;">
-<button type="submit" formaction="AddAccount.jsp">Add Accounts</button>
-<button type="submit" formaction="Activate.jsp">View Inactive Accounts</button>
+<div class="test" style="position:absolute;top:20%;left:40%; z-index:999;">
+<button type="submit" style="font-size:18px;" formaction="AddAccount.jsp">Add Accounts</button>
+<button type="submit" style="font-size:18px;" formaction="Activate.jsp">View Inactive Accounts</button>
 
 </div>
 
 
 <br>
-<div align="center">
-<h1>Welcome Admin</h1>
+<div align="center" style="text-align=left;font-size:20px;">
+<h1>Welcome Admin,</h1>
 </div>
 <br>
 <%
@@ -157,7 +167,7 @@ request.setAttribute("accountMap",accountMap);
 	 <c:if test="${account1.value.getStatus()}">
      <tr>
         <td>
-        <button type="submit" formaction="UpdateAccount.jsp" name="id" value="<c:out value="${account1.value.getAccountId()}"></c:out>">
+        <button type="submit" formaction="UpdateAccount.jsp?id=${account1.value.getAccountId()}&status=${account1.value.getStatus()}" name="id" value="<c:out value="${account1.value.getAccountId()}"></c:out>">
         <c:out value="${account1.value.getAccountId()}"></c:out></button></td>
         <td><c:out value="${account1.value.getBranch()}" /></td> 
         <td><c:out value="${account1.value.getBalance()}" /></td> 
@@ -172,12 +182,12 @@ request.setAttribute("accountMap",accountMap);
 </div>
 
 <br>
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in deactivate customer");
+	out.println("Error in deactivate customer");
 }%>
-
-
+</div>
 
 
 <br>

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Deactivate </title>
+<title>Activate Account</title>
 </head>
 <style>
 .content-table{
@@ -50,12 +50,24 @@ font-weight:bold;
 color:#22896B;
 
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
 
 
 </style>
 <body>
 
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -64,7 +76,7 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
 
 
 <div align="left">
@@ -72,7 +84,7 @@ if(session.getAttribute("user")==null)
 </div>
 <br>
 
-<p> To activate account </p>
+<p> To activate the accounts, </p>
 
 
 <br>
@@ -117,7 +129,7 @@ request.setAttribute("accountMap",accountMap);
   </tbody>
 </table>
 
-
+<div class="message">
 <% 
 String name=(String) request.getAttribute("message");
 if(name!=null)
@@ -126,7 +138,7 @@ if(name!=null)
 }
 
 %>
-
+</div>
 </body>
 </html>
 

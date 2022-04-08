@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chnage to Active Customer</title>
+<title>Activating  Customer</title>
 </head>
  <style>
  
@@ -48,12 +48,26 @@ font-weight:bold;
 color:#0c55B2;
 
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
+
+
 </style>
 <body>
 <%@ include file="Menu.jsp"%>
 
 
-<h1>Activate Customer Account</h1><br>
+<h1>Activate Customer here,</h1><br>
 
 <form action="action" method="get">
 
@@ -104,14 +118,16 @@ color:#0c55B2;
 </tbody>
 </table>
 </form>
+<div class="error">
 <%String message1=(String) request.getAttribute("error");
  if(message1!=null)
  {
-	 out.println("error in activating Customer");
+	 out.println("Error in activating Customer");
  }
 
 %>
-
+</div>
+<div class="message">
 <%String message=(String) request.getAttribute("message");
  if(message!=null)
  {
@@ -119,5 +135,7 @@ color:#0c55B2;
  }
 
 %>
+</div>
+
 </body>
 </html>

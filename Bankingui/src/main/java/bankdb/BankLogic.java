@@ -33,8 +33,6 @@ public class BankLogic   implements  BankInterface {
 		 return map;
 	}
 	
-	
-	
 	public void updationCustomer(CustomerInformation cus) throws Exception
 	{
 		custom.updateCustomer(cus);
@@ -89,14 +87,14 @@ public class BankLogic   implements  BankInterface {
 		return list1;
 	}
 	
-	public void updatedeposit(AccountInformation acc) throws Exception
+	public void updatedeposit(int number1,int  number2,double num) throws Exception
 	{
-		account.amountdeposit(acc);
+		account.amountdeposit(number1,number2,num);
 	}
 	
-	public void updateWithdraw(AccountInformation acc) throws Exception
+	public void updateWithdraw(int number1,int  number2,double num) throws Exception
 	{
-		account.amountWithdrawalAccount(acc);
+		account.amountWithdrawalAccount(number1,number2,num);
 	}
 	public void  changeStatusAccount(int accId,int cusId,int num1)
 	{

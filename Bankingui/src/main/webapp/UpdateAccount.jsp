@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Update Account</title>
 </head>
 <style>
 body {
@@ -36,7 +36,20 @@ top:20%;
 bottom:30%;
 left:10%;
 right:20%;
-text-align:left;}
+text-align:left;
+}
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
 
 
 
@@ -47,7 +60,7 @@ text-align:left;}
 
 <body>
 <%@ include file="Menu.jsp" %>
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -56,7 +69,7 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
 
 
 
@@ -71,20 +84,36 @@ if(session.getAttribute("user")==null)
 
 <br>
 <br>
+<%String id=request.getParameter("id");
+String status=request.getParameter("status");%>
 CustomerId:<br>
-<input type="number" name="customerId" placeholder="Enter customerId" required><br>
+<input type="number" name="customerId" value="<%out.print(id); %>" placeholder="Enter customerId" required><br>
 <br>
 
 Branch:<br>
-<input type="text" name="branch" placeholder="enter branch" required><br>
-<br>
+<select style="width:70%;" name="branch">
+<% 
+BankLogic logic=new BankLogic();
+ArrayList<String> list=logic.getBranchesList();
+
+String branchName="";
+for(String branches:list)
+{
+branchName=branches;	
+
+System.out.println(branchName);%>
+<option value="<%=branchName%>"><%=branchName%> </option>
+<%}%>
+
+</select><br><br>
+
 
 Balance:<br>
 <input type="text" name="balance" placeholder="enter balance" required><br>
 <br>
 
 Status:<br>
-<input type="text" name="status" placeholder="enter status" required><br>
+<input type="text" name="status" value="<%out.print(status); %>" placeholder="enter status" required><br>
 <br>
 
 <input type="submit" name="submit" value="update"> <br><br>
@@ -92,21 +121,23 @@ Status:<br>
 
 
 <br>
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in update customer");
+	out.println("Error in update customer");
 }%>
+</div>
 
-
-
+<div class="message">
 <% String update=(String)request.getAttribute("message");
   if(update!=null)
   {
-	  out.println("Updated Successffully");
+	  out.println(" Account Updated Successffully");
   
   }
 
 %>
+</div>
 </div>
 
 

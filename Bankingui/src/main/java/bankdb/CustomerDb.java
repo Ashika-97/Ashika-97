@@ -25,7 +25,7 @@ public class CustomerDb{
 				LogicalConnection.creationTable(query);
 		}
 
-	public  void insertionCustomer(CustomerInformation custom) throws SQLException
+	public  void insertionCustomer(CustomerInformation custom) throws Exception
 		{ 
 
 
@@ -33,6 +33,10 @@ public class CustomerDb{
 		try ( PreparedStatement post=LogicalConnection.getConnection().prepareStatement(insert))
 			 {
 			String name=custom.getCustomerName();
+			if(name.isEmpty() || name==null)
+			{
+				throw new Exception("name cant be empty in accounts");
+			}
 			post.setString(1, name);
 			long mobNo=custom.getMobileNumber();
 			post.setLong(2, mobNo);

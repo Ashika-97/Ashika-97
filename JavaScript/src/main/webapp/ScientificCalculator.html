@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+</head>
+<style>
+
+     .calculator {
+	         margin-top:200px;
+			 padding: 10px;
+			 border-radius: 1.6em;
+			 height: 470px;
+			 width: 450px;
+			 margin-left:auto;
+			 margin-right:auto;
+			 background-color:#564359;
+			 box-shadow: #4F4040 10px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+		            } 
+    .display {
+			 padding-top:2px;
+			 font-family:sans-serif;
+			 font-size:20px;
+			 background-color: #cccccc ;
+			 border: solid black 0.5px;
+			 color:black;
+			 border-radius: 5px;
+			 width: 97%;
+			 height: 35%;
+		        }
+    .twodisplay{
+             padding-top:2px;
+			 font-family:sans-serif;
+			 font-size:20px;
+			 background-color: #cccccc ;
+			 border: solid black 0.5px;
+			 color:black;
+			 border-radius: 5px;
+			 width: 97%;
+			 height: 35%;   
+            }
+	.button {
+			 font-family:sans-serif;
+			 background-color:black;
+			 font-weight:bold;
+			 font-size:20px;
+			 color:white;
+			 border:solid black 0.5px;
+			 width: 75px;
+			 border-radius: 50%;
+			 box-shadow:5px 0px #A70A64;
+			 height: 65%;
+			 margin-left:10px;
+			 outline: none;
+		       }
+   
+	 .buttontry{
+		     font-family:sans-serif;
+			 background-color:black;
+			 font-weight:bold;
+			 font-size:20px;
+			 color:white;
+			 border:solid black 0.5px;
+			 width: 75px;
+			 border-radius: 50%;
+			 height: 65%;
+			 margin-left:10px;
+			 box-shadow:5px 0px #A70A64;
+			 outline: none;
+		      }
+	 .button:hover{
+		     background-color: #241475;
+		     }
+     .buttontry:hover{
+		     background-color: #241475;
+		     }
+  
+    .ball{
+			 font-family:sans-serif;
+			 background-color:black;
+			 font-weight:bold;
+			 font-size:20px;
+			 color:white;
+			 margin-left:10px;
+			 box-shadow:5px 0px #630D5D;
+			 border:solid black 0.5px;
+			 width: 75px;
+			 border-radius: 50%;
+			 height: 65%;
+			 outline: none;
+			
+		 }
+	 .ball:hover{
+		     background-color: #241475;
+		     }
+		
+</style>
+
+<script  type="text/javascript" src="ScientificButtons.js"></script>
+
+<body>
+
+  <div class=container>
+		<table class = "calculator">
+		 <tr>
+		 <td colspan = "3"><input class="twodisplay" type="text" id="resultdisplay" style="padding-top:2px;text-align:right;"/>
+		 <input class = "display" type = "text" id = "result" style="padding-top:2px;text-align:right;" /> </td>
+		 <td> <input class = "ball" type = "button" value = "C" onclick="clearScreen()" /> </td>
+		 </tr>
+		 <tr>
+		
+		 <td> <input class = "button"    type = "button" value = "1"             onclick="show('1')" /> </td>
+		 <td> <input class = "button"    type = "button" value = "2"             onclick="show('2')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "3"             onclick="show('3')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "+"  id="plus"  onclick="show('+');" /> </td>
+		 </tr>
+		 
+		 <tr>
+		 <td> <input class = "button"    type = "button" value = "4"             onclick="show('4')"  /> </td>
+		 <td> <input class = "button"    type = "button" value = "5"             onclick="show('5')"  /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "6"             onclick="show('6')"  /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "-" id="minus"  onclick="show('-')" /> </td>
+		 </tr>
+		 
+		 <tr>
+		 <td> <input class = "button"    type = "button" value = "7"             onclick="show('7')" /> </td>
+		 <td> <input class = "button"    type = "button" value = "8"             onclick="show('8')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "9"             onclick="show('9')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "*"  id="star"  onclick="show('*')" /> </td>
+		 </tr>
+		 
+		 <tr>
+		 <td> <input class = "button"    type = "button" value = "."             onclick="show('.')" /> </td>
+		 <td> <input class = "button"    type = "button" value = "0"             onclick="show('0')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "=" id="equal"  onclick="equal()" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "/" id="slash"  onclick="show('/')" /> </td>
+		
+		 </tr>
+		 
+		  <tr>
+		 <td> <input class = "button"    type = "button" value = "("  id="dot"   onclick="show('(')" /> </td>
+		 <td> <input class = "button"    type = "button" value = ")"             onclick="show(')')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "%"  id="mod"   onclick="show('%')" /> </td>
+		 <td> <input class = "buttontry" type = "button" value = "d"  id="del"   onclick="backward()" /> </td>
+		 </tr>
+		
+		 <tr>
+		 <td> <input class = "button"    type = "button" value = "2√" id="root"  onclick="show('√')" /> </td>
+		 <td> <input class = "button"    type = "button" value = "3√"            onclick="show('3√')" /> </td>
+		 <td> <input class = "buttontry"    type = "button" value = "^"  id="power" onclick="show('^')" /> </td>
+		 <td> <input class = "buttontry"    type = "button" value = "π"  id="pi"    onclick="show('π')" /> </td>
+		 </tr>
+		 </table>
+		</div>
+	<p id="calc"></p>
+      
+</body>
+</html>
+
+
+
+
+<!-- √ -->
+
+
+
+
+

@@ -44,13 +44,24 @@ color:#090302;
 text-indent:40px;
 
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
 
 
 </style>
 <body>
 <%@ include file="Menu.jsp" %>
 
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -59,17 +70,20 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
 
 <br>
 
 <br>
 
 <form action="AccountServlet?operation=transfer"  method="post">
-
+<div class="run" style="text-align:left;font-size:25px;">
+welcome
+<%=session.getAttribute("user") %>,
+</div>
 
 <div class="contain">
-<p Style="text-align:center;font-size:30px;color:#000066;font-weight:bold;">Account Transaction page</p>
+<p Style="text-align:center;font-size:30px;color:#000066;font-weight:bold;">Account Transaction:</p>
 
 <p Style="text-align:left;font-size:20px;"> From AccountNumber:</p>
 
@@ -85,7 +99,6 @@ for(Map.Entry<Integer,Map<Integer,AccountInformation >>  acc:accountMap.entrySet
 	for(Map.Entry<Integer,AccountInformation> accMap:map.entrySet())
 	{ int accountId=accMap.getKey();
 	%>
-	
 
   <option value="<%= accountId%>"><%= accountId%> </option>
 <%}
@@ -117,19 +130,19 @@ for(Map.Entry<Integer,Map<Integer,AccountInformation >>  acc1:accountMap1.entryS
 <br>
 
 
-<p Style="text-align:left;font-size:20px;">Amount</p>
+<p Style="text-align:left;font-size:20px;">Amount:</p>
 <input type="number" name="amount" style="width:70%;" placeholder="amount" required><br>
 <br>
 <input type="submit" value="AmountTransaction">
 <br>
-
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in adtransaction account");
+	out.println("Error occurs in  transaction account");
 }%>
+</div>
 
-
-
+<div class="message">
 <% 
 String name=(String)request.getAttribute("message");
 if(name!=null)
@@ -138,7 +151,7 @@ if(name!=null)
 		}
 
 %>
-
+</div>
 </div>
 
 </form>

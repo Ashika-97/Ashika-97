@@ -7,8 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>All Customer Lists</title>
 
   <script type = "text/javascript">
         
@@ -24,10 +23,8 @@
                }
             }
         
-      </script>
+   </script>
   
-  
-
 </head>
 
 <style>
@@ -80,10 +77,23 @@ top:50%;
 margin:10 10;
 left:10;
 }
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
 </style>
 
 <body>
-
+<%@ include file="Menu.jsp"%>
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -92,7 +102,8 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
+<div class="message">
 <% String message=(String) request.getAttribute("message");
  if(message!=null)
  {
@@ -100,11 +111,12 @@ if(session.getAttribute("user")==null)
  }
 
 %>
+</div>
 <form action="AccountServlet" method="post">
 
-<div class="text" style="font-size:30px;font-weight:bold;position:absolute;top:15%;left:43%; z-index:999;">
-<button type="submit" formaction="AddCustomer.jsp">Add Customer</button>
-<button type="submit" formaction="ActivateCustomer.jsp">View Inactive Customers</button>
+<div class="text" style="font-size:30px;font-weight:bold;position:absolute;top:15%;left:48%; z-index:999;">
+<button type="submit"  style="font-size:18px;" formaction="AddCustomer.jsp">Add Customer</button>
+<button type="submit" style="font-size:18px;" formaction="ActivateCustomer.jsp">View Inactive Customers</button>
 
 </div>
 
@@ -112,13 +124,7 @@ if(session.getAttribute("user")==null)
 
 
 
-<%@ include file="Menu.jsp"%>
 
-
-
-<br>
-welcome
-<%=session.getAttribute("user") %>
 
 
 <br>
@@ -129,8 +135,15 @@ Map<Integer,CustomerInformation> map=logic.selectCustomer();
 CustomerInformation customer=null;int id=0;
 
 %>
-<h1>Customer Login</h1><br>
+<h1>Customer Details,</h1><br>
 
+<div style="text-align:left;font-size:25px;">
+
+welcome
+<%=session.getAttribute("user") %>,
+
+</div>
+<br>
 
 
 <br>
@@ -160,7 +173,7 @@ CustomerInformation customer=null;int id=0;
          <%if(customer.getStatus()){ %>
     <tr>	   
    
-     <td><button type="submit"formaction="UpdateCustomer.jsp" name="id" value="id"><%out.println(customer.getCustomerId()); %></button></td>
+     <td><button type="submit" formaction="UpdateCustomer.jsp" name="id" value="<%=customer.getCustomerId()%>"><%out.println(customer.getCustomerId()); %></button></td>
       <td><% out.print(customer.getCustomerName());%></td>
        <td><% out.print(customer.getMobileNumber());%></td>
         <td><% out.print(customer.getAddress());%></td>
@@ -179,11 +192,12 @@ CustomerInformation customer=null;int id=0;
 <div class="test" style="font-size:20px;font-weight:bold;position:absolute;top:20%;right:38%; z-index:999;">
 <br><br>
 </div>
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in deactivate customer");
+	out.println("Error in deactivate customer");
 }%>
-
+</div>
 
 
 </form>

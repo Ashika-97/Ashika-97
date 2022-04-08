@@ -10,13 +10,23 @@
 <title>Transfer page</title>
 </head>
 <style>
+body {
+background-image: linear-gradient(to left,black ,#ebccff);
+-moz-background-size: cover;
+-webkit-background-size: cover;
+background-size: cover;
+background-position: top center !important;
+background-repeat: no-repeat !important;
+background-attachment: fixed;
+text-align:center;
+}
 
 
 .text{
 width:250px;
-height:250px;
+height:300px;
 padding:20px 30px;
-background-color:#e6ffe6;
+background-color:#F0F8FF;
 border-radius:20px;
 box-shadow:0 0 10px 0 #000;
 margin:auto;
@@ -25,32 +35,50 @@ top:20%;
 bottom:40%;
 left:10%;
 right:20%;
-text-align:left;}
+text-align:left;
+}
+
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
 
 
 </style>
 <%@ include file="CustomerMenu.jsp"%>
 <body >
 
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
-	{
+ {
 	out.println("session expired");
 	request.getRequestDispatcher("Login.jsp").forward(request,response);
-	}
+  }
 
 %>
+</div>
 
+<div style="font-size:30px;font-weight:bold;text-align:left;top:50%;">
 
-<div align="left">
-
-<p  style="font-size:30px;font-weight:bold;">User Transaction</p><br>
+<p >User Transaction:</p><br>
+</div>
+<div class="run" style="text-align:left;font-size:25px;">
+welcome
+<%=session.getAttribute("user") %>,
 </div>
 <br>
 <br>
 <form action="AccountServlet?operation=transaction" method="post">
 <br><br>
+
 
 <div class="text" style="align:left">
 <table >
@@ -116,11 +144,13 @@ for(Map.Entry<Integer,Map<Integer,AccountInformation >>  acc:accountMap1.entrySe
 
 </table>
 <br>
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in transaction customer");
+	out.println("Error in customer transaction");
 }%>
-
+</div>
+<div class="message">
 <%String  message=(String)request.getAttribute("message");
  if(message!=null)
  {
@@ -128,7 +158,7 @@ if(error!=null){
  }
 
 %>
-
+</div>
 
 
 

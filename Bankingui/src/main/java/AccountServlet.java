@@ -76,7 +76,7 @@ public class AccountServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BankLogic logic=(BankLogic) request.getServletContext().getAttribute("logic");
+		BankLogic logic=new BankLogic();
 		String operation=request.getParameter("operation");
 		ValidityCheck check=new ValidityCheck();
 		HttpSession session = request.getSession();
@@ -148,17 +148,16 @@ public class AccountServlet extends HttpServlet {
 		String address=request.getParameter("Enter Address");
 		String mobileNumber=request.getParameter("Enter MobileNumber");
 		String email=request.getParameter("Enter email");
-		String trimName=name.trim();
 		String message="Information updated successfully";
 		long mobile=Long.parseLong(mobileNumber);
 	
    try {
-		check.userCheck(trimName,address);
+		check.userCheck(name,address);
 		check.userCheck(mobileNumber, email);
 		check.numberCheck(mobile);
 		PrintWriter out=response.getWriter();
 		CustomerInformation custom=new CustomerInformation();
-		custom.setCustomerName(trimName);
+		custom.setCustomerName(name);
 		custom.setAddress(address);
 		custom.setMobileNumber(mobile);
 		custom.setEmail(email);
@@ -224,7 +223,7 @@ public class AccountServlet extends HttpServlet {
 	 if(operation.equals("updateAccount"))
 	 {
 		 
-		    String number=request.getParameter("accountId");
+		  
 			String number1=request.getParameter("customerId");
 			String branch=request.getParameter("branch");
 			String balance=request.getParameter("balance");
@@ -232,19 +231,19 @@ public class AccountServlet extends HttpServlet {
 			String message="Account updated Successfully ";
 						
 		try {
-			check.userCheck(number,number1);
+			check.userCheck(status,number1);
 		    check.userCheck(branch, balance);
 		    check.updateCheck(operation);
 			
 			double balance1=Double.parseDouble(balance);
 			check.balanceCheck(balance1);
-			int numForm=Integer.parseInt(number);
+			
 			int numForm1=Integer.parseInt(number1);
-			check.checkNumber(numForm, numForm1);
+			check.intCheck(numForm1);
 			boolean bool=Boolean.parseBoolean(status);
 			
 			AccountInformation account=new AccountInformation();
-			account.setAccountId(numForm);
+			
 			account.setCustomerId(numForm1);
 			account.setBranch(branch);
 			account.setBalance(balance1);
@@ -257,6 +256,7 @@ public class AccountServlet extends HttpServlet {
 		catch(Exception ex)
 		{
 			 request.setAttribute("error",message);
+			 ex.printStackTrace();
 			System.out.println("Exception in updating account status");
 		}
 		 request.setAttribute("updateAccount",message);
@@ -272,7 +272,7 @@ public class AccountServlet extends HttpServlet {
 	        int numBer=Integer.parseInt(name);
 	        int number2=Integer.parseInt(name1);
 	      
-	        String type=request.getParameter("Amount");
+	       
 	      
 	       try {
 	    	 check.userCheck(name, name1);
@@ -281,20 +281,15 @@ public class AccountServlet extends HttpServlet {
 		    
 		    
 		        
-			 AccountInformation acc=new AccountInformation();
-			 acc.setAccountId(numBer);
-			 acc.setAccountId(number2);
-			 acc.setBalance(num);
+		
 		
 			
 				try {
-			   
-					if(type.equals("Amountdeposit"))
-			                  {
-						logic.updatedeposit(acc);		
+			            logic.updateWithdraw(numBer, number2, number2);
+						logic.updatedeposit(numBer,number2,num);		
 				    
-						logic.updateWithdraw(acc);
-					}
+						
+				
 					}
 				catch(ClassNotFoundException|IOException e)
 				  {
@@ -335,8 +330,8 @@ public class AccountServlet extends HttpServlet {
 			acc.setBalance(num);  
 
 				try {
-					logic.updateWithdraw(acc);
-					logic.updatedeposit(acc);
+				    logic.updateWithdraw(number1, number2, number2);
+					logic.updatedeposit(number1,number2,num);
 				
 				    }
 				catch(ClassNotFoundException|IOException e)

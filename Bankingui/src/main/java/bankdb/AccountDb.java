@@ -1,13 +1,8 @@
 package bankdb;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
+import java.util.*;
+
 
 public class AccountDb  {
 
@@ -252,29 +247,28 @@ public ArrayList<String> getCustomersAccountBranch() throws SQLException
 }
 
 		
-public void amountdeposit(AccountInformation acc) throws SQLException
+public void amountdeposit(int number1,int number2,double num) throws SQLException
         
    {
 	   
 	String query="Select balance from AccountDetails where accountId=?";
-	
+	double balanceAmount=0;
 	try(PreparedStatement state=LogicalConnection.getConnection().prepareStatement(query);)
 	{  
-		int acc1=acc.getAccountId();
-		state.setInt(1,acc1);
+		int acc1=number2;
+		state.setInt(1,number2);
 		try(ResultSet result=state.executeQuery())
-	   {
-			double balanceAmount=0;
-		if(acc1!=0)
-		  {
+	    {
+		
+		
 		   while(result.next())
 		     {
 			  
 			balanceAmount=result.getDouble("balance");
-			balanceAmount+=acc.getBalance();
+			balanceAmount+=num;
 			
 		     }
-		  
+		  System.out.println("the balance amount is "+ balanceAmount);
 			String modify="update AccountDetails set balance=? where accountId=?";
 			try(PreparedStatement create=LogicalConnection.getConnection().prepareStatement(modify);)
 			{
@@ -283,7 +277,7 @@ public void amountdeposit(AccountInformation acc) throws SQLException
 				create.setInt(2, acc1);
 				create.executeUpdate();
 				
-			}
+			
 		  }}
 		
 		System.out.println("Amount deposited successfully!");	
@@ -297,31 +291,33 @@ public void amountdeposit(AccountInformation acc) throws SQLException
 	}
 			
 			
-public void amountWithdrawalAccount(AccountInformation acc) throws SQLException
+public void amountWithdrawalAccount(int number1,int number2,double num) throws SQLException
 {
-   
-	 String updateAmount="Update AccountDetails set balance=? where accountId=?";
-	    		   try(PreparedStatement update=LogicalConnection.getConnection().prepareStatement(updateAmount);ResultSet result=update.executeQuery();)
-	    		   {
-	    			   double amount=acc.getBalance();
-	    			   amount=amount-1000;
-	    			   double balance=result.getDouble("balance");
-	    			   if(balance >amount)
-	    			   {
-	    			   balance=balance-amount;
-	    			   }
-	    			   
-	    			   update.setDouble(1,balance);
-	    			   update.setInt(2,acc.getAccountId());
-	    			   update.executeUpdate();
-	    			   System.out.println("Amount witdrawn successfully");
-	    		   }
-	    	     		   
-	    	   
-	    	   catch(SQLException e)
-	    	   {
-	    		   System.out.println("Exception in withdrawn");
-	    	   }
+	
+	String updateAmount="Update AccountDetails set balance=? where accountId=?";
+	   try(PreparedStatement update=LogicalConnection.getConnection().prepareStatement(updateAmount);ResultSet result=update.executeQuery();)
+	   {
+
+		   double amount=num;
+		   amount=amount-1000;
+		   double balance=result.getDouble("balance");
+		   if(balance >amount)
+		   {
+		   balance=balance-num;
+		   }
+		   
+		   update.setDouble(1,balance);
+		   update.setInt(2,number2);
+		   update.executeUpdate();
+		   System.out.println("Amount witdrawn successfully");
+		   }
+	
+  		   
+
+catch(SQLException e)
+{
+	   System.out.println("Exception in withdrawn");
+}
 	    	
 }
 	

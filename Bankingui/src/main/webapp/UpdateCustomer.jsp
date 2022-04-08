@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Update details</title>
+<title>Update Customer details</title>
 </head>
 <style>
 body {
@@ -44,12 +44,25 @@ text-indent:40px;
 
 }
 
+.message{
+color:green;
+font-size:20px;
+font-weight:bold;
+
+}
+.error{
+color:red;
+font-size:20px;
+font-weight:bold;
+}
+
+
 
 </style>
 <body background="update.jpg">
 <%@ include file="Menu.jsp"%>
 
-
+<div class="error">
 <% 
 if(session.getAttribute("user")==null)
 	{
@@ -58,7 +71,7 @@ if(session.getAttribute("user")==null)
 	}
 
 %>
-
+</div>
 
 
 <br>
@@ -76,25 +89,26 @@ if(session.getAttribute("user")==null)
 <br>
 <br>
 <label for="replace mobileNumber" ><b>MobileNumber</b></label>
-<input type="text"  placeholder="replace mobilenumber" name="replace MobileNumber">
-<br><br>
+ <input type="tel" name="telphone" placeholder="991 234 128 0" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10"  title="Ten digits code" required/>    
+    <br><br>
 <label for="replace email"><b>E-mail Id</b></label><br>
 <input type="text"  placeholder="replace email" name="replace email">
 <br><br>
 <button type="submit">Update</button><br> 
 
 
-
+<div class="error">
 <%String error= (String)request.getAttribute("error");
 if(error!=null){
-	out.println("error in updation");
+	out.println("Error in updation");
 }%>
-
+</div>
+<div class="message">
 <%String message= (String)request.getAttribute("message");
 if(message!=null){
 	out.println("Customer updated successfully");
 }%>
-
+</div>
 </div>
 <br>
 

@@ -85,7 +85,7 @@ public class StringSet1Logic {
 			len--;
 		}
 		
-		if(ch[len]!=' ' && ch[len]!=0)
+		if(ch[len]!=' ' && ch[len]!= ' ')
 		{
 			char temp=ch[num];
 			ch[num]=ch[len];

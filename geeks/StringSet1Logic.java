@@ -82,7 +82,7 @@ public class StringSet1Logic {
 		}
 		if(ch[len]==' ')
 		{
-			len++;
+			len--;
 		}
 		
 		if(ch[len]!=' ' && ch[len]!=0)
